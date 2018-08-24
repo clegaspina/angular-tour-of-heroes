@@ -1,0 +1,20 @@
+@startuml
+
+Actor Admin as A
+Participant projectModule as PM
+Database Project as P
+
+group deleteProject
+
+ref over A, PM, P : getProject(projectName)
+
+A -> PM: deleteProject()
+activate PM
+PM -> P: deleteProject()
+deactivate PM
+activate P
+A <-- P: Project deleted successfully
+deactivate P
+
+end
+@enduml
